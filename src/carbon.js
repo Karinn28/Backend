@@ -1,4 +1,4 @@
-const { executeQueryWithParams } = require('./db');
+const { executeQueryWithParams } = require('./config/db');
 
 // Fungsi untuk mendapatkan pengguna dari database
 async function getUserFromDb(username, password) {

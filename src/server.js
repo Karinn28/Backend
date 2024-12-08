@@ -13,7 +13,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Middleware untuk validasi autentikasi
 app.use((req, res, next) => {
-  if (req.path === '/login') return next(); // Bypass autentikasi untuk login
+  // Bypass autentikasi untuk login dan user
+  if (req.path === '/login' || req.path.startsWith('/register')) return next();
 
   const token = req.headers.authorization?.split('Bearer ')[1];
   if (!token) {
