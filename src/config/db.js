@@ -22,4 +22,7 @@ async function executeQueryWithParams(query, params) {
   return results;
 }
 
-module.exports = { executeQueryWithParams, dbConnection };
+module.exports = {
+  dbConnection: dbConnection.promise(),
+  executeQueryWithParams,
+};
