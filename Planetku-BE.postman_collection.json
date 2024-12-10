@@ -33,12 +33,12 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8089/register",
+					"raw": "http://localhost:8080/register",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8089",
+					"port": "8080",
 					"path": [
 						"register"
 					]
@@ -67,12 +67,12 @@
 					]
 				},
 				"url": {
-					"raw": "http://localhost:8089/login",
+					"raw": "http://localhost:8080/login",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8089",
+					"port": "8080",
 					"path": [
 						"login"
 					]
@@ -95,12 +95,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8089/carbon-emission/6",
+					"raw": "http://localhost:8080/carbon-emission/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8089",
+					"port": "8080",
 					"path": [
 						"carbon-emission",
 						"6"
@@ -137,12 +137,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8089/carbon-emission",
+					"raw": "http://localhost:8080/carbon-emission",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8089",
+					"port": "8080",
 					"path": [
 						"carbon-emission"
 					]
@@ -171,12 +171,12 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8089/user/6",
+					"raw": "http://localhost:8080/user/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8089",
+					"port": "8080",
 					"path": [
 						"user",
 						"6"
@@ -197,12 +197,12 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8089/user/6",
+					"raw": "http://localhost:8080/user/6",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
-					"port": "8089",
+					"port": "8080",
 					"path": [
 						"user",
 						"6"

@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const app = express();
-const port = 8089;
+const port = 8080;
 
 // Middleware untuk parsing JSON
 app.use(bodyParser.json());
