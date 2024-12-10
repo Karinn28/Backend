@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const app = express();
-const port = 8080;
+const port = 8089;
 
 // Middleware untuk parsing JSON
 app.use(bodyParser.json());
@@ -18,7 +18,9 @@ app.use((req, res, next) => {
 
   const token = req.headers.authorization?.split('Bearer ')[1];
   if (!token) {
-    return res.status(401).json({ message: 'Unauthorized: Token not provided' });
+    return res
+      .status(401)
+      .json({ message: 'Unauthorized: Token not provided' });
   }
 
   try {
