@@ -1,0 +1,215 @@
+{
+	"info": {
+		"_postman_id": "19d3540f-efca-45e1-9427-2ace18dceac7",
+		"name": "Planetku-BE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9586598",
+		"_collection_link": "https://medit-imk-uyee.postman.co/workspace/New-Team-Workspace~e68f9279-9140-4375-bf1a-f0af1b206e92/collection/9586598-19d3540f-efca-45e1-9427-2ace18dceac7?action=share&source=collection_link&creator=9586598"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "coba cobain",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "coba1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "coba123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8089/register",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "coba1",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "coba123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8089/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Carbon Emission Data",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsInVzZXJuYW1lIjoiY29iYTEiLCJpYXQiOjE3MzM4MzU3MzksImV4cCI6MTczMzgzOTMzOX0.B9N5u4rcicyXib5rvUB28XkjpG1tuVdDl2e3kLSvuWw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8089/carbon-emission/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"carbon-emission",
+						"6"
+					],
+					"query": [
+						{
+							"key": "user_id",
+							"value": "6",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Carbon Emission",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsInVzZXJuYW1lIjoiY29iYTEiLCJpYXQiOjE3MzM4MzU3MzksImV4cCI6MTczMzgzOTMzOX0.B9N5u4rcicyXib5rvUB28XkjpG1tuVdDl2e3kLSvuWw",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user_id\": 6,\r\n    \"emissionData\": {\r\n        \"electriccity\": 1,\r\n        \"gas\": 2,\r\n        \"transportation\": 2,\r\n        \"food\": 2,\r\n        \"organic_waste\": 2,\r\n        \"inorganic_waste\": 2,\r\n        \"carbon_footprint\": 999\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/carbon-emission",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"carbon-emission"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Data User",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsInVzZXJuYW1lIjoiY29iYTEiLCJpYXQiOjE3MzM4NDQ0MjMsImV4cCI6MTczMzg0ODAyM30.4ijvZJgkTag7v3AnDKrqEW6wRfALrhGU1LsJaVUkBLQ",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"coba cobain lagi tertus\",\r\n    \"email\": \"cobna@mail.com\",\r\n    \"id\": 6\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8089/user/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"user",
+						"6"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile User",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjYsInVzZXJuYW1lIjoiY29iYTEiLCJpYXQiOjE3MzM4NDQ0MjMsImV4cCI6MTczMzg0ODAyM30.4ijvZJgkTag7v3AnDKrqEW6wRfALrhGU1LsJaVUkBLQ",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8089/user/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8089",
+					"path": [
+						"user",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

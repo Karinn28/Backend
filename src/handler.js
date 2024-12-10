@@ -8,6 +8,31 @@ const {
 } = require('./carbon.js');
 const userModel = require('./userTable.js');
 
+// GetDataForProfile
+const GetDataForProfile = async (req, res) => {
+  const { id } = req.params;
+  try {
+    if (!id) {
+      return res.status(400).json({
+        message: 'Please provide either id or name.',
+      });
+    }
+
+    const data = await userModel.GetDataForProfile(id);
+
+    res.status(201).json({
+      message: 'Get Data Success!!',
+      data: data[0][0],
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Server Error while retrieving user',
+      serverMessage: error.message,
+    });
+  }
+};
+// Get User
+
 const getUser = async (req, res) => {
   const { id, name } = req.query; // Using query parameters for flexibility
   try {
@@ -17,7 +42,7 @@ const getUser = async (req, res) => {
       });
     }
 
-    const [user] = await userModel.getUserByIdOrName(id || null, name || null);
+    const [user] = await userModel.getUser(id || null, name || null);
 
     if (!user) {
       return res.status(404).json({
@@ -36,6 +61,8 @@ const getUser = async (req, res) => {
     });
   }
 };
+
+// Insert User
 
 const createNewUser = async (req, res) => {
   const { body } = req;
@@ -68,6 +95,8 @@ const createNewUser = async (req, res) => {
   }
 };
 
+// Update User Start
+
 const updateUser = async (req, res) => {
   const { id } = req.params;
   const { body } = req;
@@ -87,7 +116,7 @@ const updateUser = async (req, res) => {
   }
 
   try {
-    const userExists = await userModel.getUserByIdOrName(id, null);
+    const userExists = await userModel.getUser(id, null);
     if (!userExists[0]) {
       return res.status(404).json({
         message: 'User not found',
@@ -109,6 +138,8 @@ const updateUser = async (req, res) => {
     });
   }
 };
+
+// Delete User End
 
 const deleteUser = async (req, res) => {
   const { id } = req.params;
@@ -143,16 +174,13 @@ const deleteUser = async (req, res) => {
 // Fungsi untuk login pengguna
 async function loginHandler(req, res) {
   // const { username, password } = req.body;
-  const body = req;
 
   try {
-    const user =
-      /*{
-      username: 'Fazza', password: 'Fazza123'
-    };*/
-      await getUserFromDb(body.username, body.password);
+    const { username, password } = req.body;
+    const user = await getUserFromDb(username, password);
+    // console.log(user);
     if (!user) {
-      return res.status(401).json({ message: 'Invalid username or password' });
+      return res.status(401).json({ message: 'Data not found!!!' });
     }
 
     // Verifikasi password
@@ -174,6 +202,8 @@ async function loginHandler(req, res) {
       user: {
         id: user.id,
         username: user.username,
+        name: user.name,
+        email: user.email,
         role: user.role,
       },
     });
@@ -181,7 +211,6 @@ async function loginHandler(req, res) {
     console.error(error);
     res.status(500).json({
       message: 'Internal server error',
-      bgst: error.message,
     });
   }
 }
@@ -189,18 +218,22 @@ async function loginHandler(req, res) {
 // Fungsi untuk menambah atau memperbarui data emisi karbon
 async function carbonEmissionHandler(req, res) {
   const { user_id, emissionData } = req.body; // Mengambil data user_id dan emissionData dari request body
-
+  // console.log('user ', user_id);
   try {
     // Cek apakah data emisi karbon sudah ada untuk user tersebut
     const existingData = await getUserCarbonEmission(user_id);
+    // console.log('ada ', existingData);
+    // console.log('panjang ', existingData.length);
 
-    if (existingData.length > 0) {
+    if (existingData !== null) {
       // Jika data sudah ada, lakukan pembaruan
+      // console.log('Masuk Update');
       await updateCarbonEmission(user_id, emissionData);
       res
         .status(200)
         .json({ message: 'Carbon emission data updated successfully' });
     } else {
+      // console.log('Masuk insert');
       // Jika data belum ada, simpan data baru
       await addCarbonEmission(user_id, emissionData);
       res
@@ -245,4 +278,5 @@ module.exports = {
   createNewUser,
   updateUser,
   deleteUser,
+  GetDataForProfile,
 };
