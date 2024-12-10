@@ -1,5 +1,5 @@
 const dbConnection = require('./config/db.js');
-const bcrypt = require('bcryptjs');
+
 const getUser = async (id, name) => {
   let SQLQuery;
   const queryParams = [];
